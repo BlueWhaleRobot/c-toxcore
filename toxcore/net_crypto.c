@@ -2572,34 +2572,41 @@ int64_t write_cryptpacket(Net_Crypto *c, int crypt_connection_id, const uint8_t 
                           uint8_t congestion_control)
 {
     if (length == 0) {
+        printf("OK0.1\n");
         return -1;
     }
 
     if (data[0] < CRYPTO_RESERVED_PACKETS) {
+        printf("OK0.2\n");
         return -1;
     }
 
     if (data[0] >= PACKET_ID_LOSSY_RANGE_START) {
+        printf("OK0.3\n");
         return -1;
     }
 
     Crypto_Connection *conn = get_crypto_connection(c, crypt_connection_id);
 
     if (conn == 0) {
+        printf("OK0.4\n");
         return -1;
     }
 
     if (conn->status != CRYPTO_CONN_ESTABLISHED) {
+        printf("OK0.5\n");
         return -1;
     }
 
     if (congestion_control && conn->packets_left == 0) {
+        printf("OK0.6\n");
         return -1;
     }
 
     int64_t ret = send_lossless_packet(c, crypt_connection_id, data, length, congestion_control);
 
     if (ret == -1) {
+        printf("OK0.7\n");
         return -1;
     }
 
