@@ -44,7 +44,7 @@
 #define CRYPTO_PACKET_MIN_RATE 4.0
 
 /* Minimum packet queue max length. */
-#define CRYPTO_MIN_QUEUE_LENGTH 1024
+#define CRYPTO_MIN_QUEUE_LENGTH 64
 
 /* Maximum total size of packets that net_crypto sends. */
 #define MAX_CRYPTO_PACKET_SIZE 1400
